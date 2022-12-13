@@ -53,8 +53,8 @@ if __name__ == "__main__":
     create_dir("files")
 
     """ Load dataset """
-    train_x = sorted(glob("training/images/*"))
-    train_y = sorted(glob("training/groundtruth/*"))
+    train_x = sorted(glob("training/images/expanded/*"))
+    train_y = sorted(glob("training/groundtruth/expanded/*"))
 
     valid_x = sorted(glob("training/images/*"))
     valid_y = sorted(glob("training/groundtruth/*"))

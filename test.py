@@ -45,8 +45,8 @@ if __name__ == "__main__":
     create_dir("results")
 
     """ Load dataset """
-    test_x = sorted(glob("training/images/*"))
-    test_y = sorted(glob("training/groundtruth/*"))
+    test_x = sorted(glob("test/*"))
+    test_y = sorted(glob("test/*"))
 
     """ Hyperparameters """
     H = 400
@@ -110,9 +110,10 @@ if __name__ == "__main__":
         pred_y = mask_parse(pred_y)
         line = np.ones((size[1], 10, 3)) * 128
 
-        cat_images = np.concatenate(
-            [image, line, ori_mask, line, pred_y * 255], axis=1
-        )
+        cat_images = pred_y * 255
+        # np.concatenate(
+        #     [image, line, ori_mask, line, pred_y * 255], axis=1
+        # )
         print(f"results\{name}.png")
         # cv2.imwrite(f"results\{name}.png", cat_images)
 
