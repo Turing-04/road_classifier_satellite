@@ -52,7 +52,7 @@ if __name__ == "__main__":
     H = 400
     W = 400
     size = (W, H)
-    checkpoint_path = "files/checkpoint.pth"
+    checkpoint_path = "weights/checkpoint.pth"
 
     """ Load the checkpoint """
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
