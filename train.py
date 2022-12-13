@@ -56,8 +56,8 @@ if __name__ == "__main__":
     train_x = sorted(glob("training/images/expanded/*"))
     train_y = sorted(glob("training/groundtruth/expanded/*"))
 
-    valid_x = sorted(glob("training/images/*"))
-    valid_y = sorted(glob("training/groundtruth/*"))
+    valid_x = sorted(glob("training/images/default/*"))
+    valid_y = sorted(glob("training/groundtruth/default/*"))
 
     data_str = f"Dataset Size:\nTrain: {len(train_x)} - Valid: {len(valid_x)}\n"
     print(data_str)
