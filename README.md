@@ -2,7 +2,7 @@
 
 conda install -c pytorch torchvision cudatoolkit=10.1 pytorch
 
-weights checkpoints are stored in the files folder
+weights checkpoints are stored in the weights folder
 results are stored in the results/test folder
 validation data is stored in the training/images/default and training/groundtruth/default folders
 training data is stored in the training/images/expanded and training/groundtruth/expanded folders
