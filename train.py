@@ -97,6 +97,11 @@ if __name__ == "__main__":
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, verbose=True)
     loss_fn = DiceBCELoss()
 
+    if os.path.exists(checkpoint_path):
+        model.load_state_dict(torch.load(checkpoint_path))
+        data_str = f"Checkpoint loaded: {checkpoint_path}"
+        print(data_str)
+
     """ Training the model """
     best_valid_loss = float("inf")
 
