@@ -50,7 +50,7 @@ if __name__ == "__main__":
     seeding(42)
 
     """ Directories """
-    create_dir("files")
+    create_dir("weights")
 
     """ Load dataset """
     train_x = sorted(glob("training/images/expanded/*"))
