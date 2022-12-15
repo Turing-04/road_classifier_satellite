@@ -128,9 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+*.csv
 /files
 /results
 /test_set_images
+<<<<<<< Updated upstream
 /test
 weights/checkpoint.pth
 submission.csv
+=======
+/weights
+>>>>>>> Stashed changes

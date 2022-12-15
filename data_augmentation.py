@@ -20,24 +20,51 @@ for filename in os.listdir(train_dir):
     im.save(os.path.join(save_dir, filename))
 
     # adjust the brightness of the image
-    im = im.point(lambda x: int(x * 1.5))
-    im.save(os.path.join(save_dir, 'brightness' + filename))
+    im = ImageEnhance.Brightness(im).enhance(random.uniform(0.7,1.3))
+    im.save(os.path.join(save_dir, 'brightness_' + filename))
+    
+    # play with contrast 
+    im = Image.open(os.path.join(train_dir, filename))
+    contrast_factor = random.uniform(0.5, 1.5)
+    im = ImageEnhance.Contrast(im).enhance(contrast_factor)
+    im.save(os.path.join(save_dir, 'contrast_' + filename))
 
     # Rotate the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
     im = im.rotate(45)
     im.save(os.path.join(save_dir, 'rotated_45_' + filename))
     
-    im = im.rotate(135)
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.rotate(180)
     im.save(os.path.join(save_dir, 'rotated_180_' + filename))
+    
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.rotate(90)
+    im.save(os.path.join(save_dir, 'rotated_90_' + filename))
 
-    # Flip the image and save it again
+    # Adjust the huing of the image
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.convert('HSV')
+    im = ImageEnhance.Color(im).enhance(random.uniform(-0.25,0.25))
+    im = im.convert('RGB')
+    im.save(os.path.join(save_dir, 'hue_' + filename))
+
+    #adjust the saturation of the image 
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.convert('HSV')
+    im.putdata(list(map(lambda x: (x[0], x[1] * 2, x[2]), im.getdata())))
+    im = im.convert('RGB')
+    im.save(os.path.join(save_dir, 'saturation_' + filename))
+
+    # Flip the image horizontally and save it again
     im = Image.open(os.path.join(train_dir, filename))
     im = im.transpose(Image.FLIP_LEFT_RIGHT)
     im.save(os.path.join(save_dir, 'flipped_' + filename))
+    
+    
 
 
-### disabled for performance reasons
+### disable for performance reasons ?
         # Add random gaussian noise to the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
     im_array = np.array(im)
@@ -90,9 +117,8 @@ for filename in os.listdir(train_dir):
     # save the base images
     im.save(os.path.join(save_dir, filename))
 
-    # adjust the brightness of the image
-    im = im.point(lambda x: int(x * 1.5))
-    im.save(os.path.join(save_dir, 'brightness' + filename))
+    # do not adjust the brightness of the mask
+    im.save(os.path.join(save_dir, 'brightness_' + filename))
 
     # Rotate the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
@@ -101,6 +127,9 @@ for filename in os.listdir(train_dir):
     
     im = im.rotate(135)
     im.save(os.path.join(save_dir, 'rotated_180_' + filename))
+    
+    im = im.rotate(90)
+    im.save(os.path.join(save_dir, 'rotated_90_' + filename))
 
     # Flip the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
@@ -110,5 +139,11 @@ for filename in os.listdir(train_dir):
 
 ### disable for performance reasons ?
     # We do NOT add noise to the corresponding mask !
+    # We do not hue the mask
+    # We do not change saturation of the mask
+    # we do not change the contrast of the mask
     im = Image.open(os.path.join(train_dir, filename))
     im.save(os.path.join(save_dir, 'noisy_' + filename))
+    im.save(os.path.join(save_dir, 'hue_' + filename))
+    im.save(os.path.join(save_dir, 'saturation_' + filename))
+    im.save(os.path.join(save_dir, 'constrast_' + filename))
