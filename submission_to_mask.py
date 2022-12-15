@@ -1,12 +1,12 @@
 #!/usr/bin/python
 import os
 import sys
-import Image
+from PIL import Image
 import math
 import matplotlib.image as mpimg
 import numpy as np
 
-label_file = 'dummy_submission.csv'
+label_file = '../submission.csv'
 
 h = 16
 w = h
@@ -23,7 +23,7 @@ def reconstruct_from_labels(image_id):
     im = np.zeros((imgwidth, imgheight), dtype=np.uint8)
     f = open(label_file)
     lines = f.readlines()
-    image_id_str = '%.3d_' % image_id
+    image_id_str = '%.3d_' % image_id 
     for i in range(1, len(lines)):
         line = lines[i]
         if not image_id_str in line:
@@ -45,7 +45,7 @@ def reconstruct_from_labels(image_id):
 
         im[j:je, i:ie] = binary_to_uint8(adata)
 
-    Image.fromarray(im).save('prediction_' + '%.3d' % image_id + '.png')
+    Image.fromarray(im).save('predictions/prediction_' + '%.3d' % image_id + '.png')
 
     return im
 

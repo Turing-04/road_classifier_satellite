@@ -114,11 +114,11 @@ if __name__ == "__main__":
         # np.concatenate(
         #     [image, line, ori_mask, line, pred_y * 255], axis=1
         # )
-        print(f"results\{name}.png")
+        print(f"results/{name}.png")
         # cv2.imwrite(f"results\{name}.png", cat_images)
 
         # save the image
-        imageio.imwrite(f"results\{name}.png", cat_images)
+        imageio.imwrite(f"results/{name}.png", cat_images)
 
     jaccard = metrics_score[0]/len(test_x)
     f1 = metrics_score[1]/len(test_x)
