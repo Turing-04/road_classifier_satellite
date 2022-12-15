@@ -132,3 +132,5 @@ dmypy.json
 /results
 /test_set_images
 /test
+weights/checkpoint.pth
+submission.csv
