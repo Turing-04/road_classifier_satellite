@@ -45,7 +45,7 @@ def reconstruct_from_labels(image_id):
 
         im[j:je, i:ie] = binary_to_uint8(adata)
 
-    Image.fromarray(im).save('predictions/prediction_' + '%.3d' % image_id + '.png')
+    Image.fromarray(im).save('analysis/predictions/prediction_' + '%.3d' % image_id + '.png')
 
     return im
 
