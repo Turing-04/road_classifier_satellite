@@ -1,8 +1,0 @@
-Please append to this file the current accuracy you have for a given model (Unet, CNN, Xception... ? ) with the number of epochs / hyperparams
-
-Essential for the report to come !
-
-
-30 epochs, U-net -> 0.895 F1 score 0.933, training dataset with 1000 samples 
-
-60 epochs, U-net -> 0.895 F1 score 0.945, training dataset with 1100 samples (antoine, only rotations / flipping but with repeting dataset)

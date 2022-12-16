@@ -16,8 +16,8 @@ for filename in os.listdir(train_dir):
     # Open the image
     im = Image.open(os.path.join(train_dir, filename))
     
-    # save the base images
-    im.save(os.path.join(save_dir, filename))
+    # save the base images with no rotation
+    im.save(os.path.join(save_dir,"rotated_0_" + filename))
 
     # adjust the brightness of the image
     im = ImageEnhance.Brightness(im).enhance(random.uniform(0.7,1.3))
@@ -31,8 +31,8 @@ for filename in os.listdir(train_dir):
 
     # Rotate the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
-    im = im.rotate(45)
-    im.save(os.path.join(save_dir, 'rotated_45_' + filename))
+    im = im.rotate(270)
+    im.save(os.path.join(save_dir, 'rotated_270_' + filename))
     
     im = Image.open(os.path.join(train_dir, filename))
     im = im.rotate(180)
@@ -45,7 +45,7 @@ for filename in os.listdir(train_dir):
     # Adjust the huing of the image
     im = Image.open(os.path.join(train_dir, filename))
     im = im.convert('HSV')
-    im = ImageEnhance.Color(im).enhance(random.uniform(-0.25,0.25))
+    im = ImageEnhance.Color(im).enhance(random.uniform(-0.15,0.15))
     im = im.convert('RGB')
     im.save(os.path.join(save_dir, 'hue_' + filename))
 
@@ -61,18 +61,16 @@ for filename in os.listdir(train_dir):
     im = im.transpose(Image.FLIP_LEFT_RIGHT)
     im.save(os.path.join(save_dir, 'flipped_' + filename))
     
-    
-
 
 ### disable for performance reasons ?
         # Add random gaussian noise to the image and save it again
-    im = Image.open(os.path.join(train_dir, filename))
-    im_array = np.array(im)
-    im_array = random_noise(im_array, mode='gaussian')
-    # Convert the floating-point array to an integer array
-    im_array = (im_array * 255).astype(np.uint8)
-    im = Image.fromarray(im_array)
-    im.save(os.path.join(save_dir, 'noisy_' + filename))
+    # im = Image.open(os.path.join(train_dir, filename))
+    # im_array = np.array(im)
+    # im_array = random_noise(im_array, mode='gaussian')
+    # # Convert the floating-point array to an integer array
+    # im_array = (im_array * 255).astype(np.uint8)
+    # im = Image.fromarray(im_array)
+    # im.save(os.path.join(save_dir, 'noisy_' + filename))
         
     
 
@@ -114,16 +112,16 @@ for filename in os.listdir(train_dir):
     # Open the image
     im = Image.open(os.path.join(train_dir, filename))
     
-    # save the base images
-    im.save(os.path.join(save_dir, filename))
+    # save the base images with no rotation
+    im.save(os.path.join(save_dir, "rotated_0_" + filename))
 
     # do not adjust the brightness of the mask
     im.save(os.path.join(save_dir, 'brightness_' + filename))
 
     # Rotate the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
-    im = im.rotate(45)
-    im.save(os.path.join(save_dir, 'rotated_45_' + filename))
+    im = im.rotate(270)
+    im.save(os.path.join(save_dir, 'rotated_270_' + filename))
     
     im = im.rotate(135)
     im.save(os.path.join(save_dir, 'rotated_180_' + filename))
@@ -143,7 +141,7 @@ for filename in os.listdir(train_dir):
     # We do not change saturation of the mask
     # we do not change the contrast of the mask
     im = Image.open(os.path.join(train_dir, filename))
-    im.save(os.path.join(save_dir, 'noisy_' + filename))
+   # im.save(os.path.join(save_dir, 'noisy_' + filename))
     im.save(os.path.join(save_dir, 'hue_' + filename))
     im.save(os.path.join(save_dir, 'saturation_' + filename))
     im.save(os.path.join(save_dir, 'constrast_' + filename))
