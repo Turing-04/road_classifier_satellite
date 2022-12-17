@@ -45,14 +45,14 @@ for filename in os.listdir(train_dir):
     # Adjust the huing of the image
     im = Image.open(os.path.join(train_dir, filename))
     im = im.convert('HSV')
-    im = ImageEnhance.Color(im).enhance(random.uniform(-0.15,0.15))
+    im = ImageEnhance.Color(im).enhance(random.uniform(-0.1,0.1))
     im = im.convert('RGB')
     im.save(os.path.join(save_dir, 'hue_' + filename))
 
     #adjust the saturation of the image 
     im = Image.open(os.path.join(train_dir, filename))
     im = im.convert('HSV')
-    im.putdata(list(map(lambda x: (x[0], x[1] * 2, x[2]), im.getdata())))
+    im.putdata(list(map(lambda x: (x[0], x[1] * 1.5, x[2]), im.getdata())))
     im = im.convert('RGB')
     im.save(os.path.join(save_dir, 'saturation_' + filename))
 
