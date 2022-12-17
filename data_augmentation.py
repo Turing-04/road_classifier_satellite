@@ -20,7 +20,7 @@ for filename in os.listdir(train_dir):
     im.save(os.path.join(save_dir,"rotated_0_" + filename))
 
     # adjust the brightness of the image
-    im = ImageEnhance.Brightness(im).enhance(random.uniform(0.7,1.3))
+    im = ImageEnhance.Brightness(im).enhance(random.uniform(0.75,1.25))
     im.save(os.path.join(save_dir, 'brightness_' + filename))
     
     # play with contrast 
@@ -51,9 +51,9 @@ for filename in os.listdir(train_dir):
 
     #adjust the saturation of the image 
     im = Image.open(os.path.join(train_dir, filename))
-    im = im.convert('HSV')
-    im.putdata(list(map(lambda x: (x[0], x[1] * 1.5, x[2]), im.getdata())))
-    im = im.convert('RGB')
+    enhancer = ImageEnhance.Color(im)
+    saturation = random.uniform(1,1.5)  # Increase saturation by 0 to 50%
+    im = enhancer.enhance(saturation)
     im.save(os.path.join(save_dir, 'saturation_' + filename))
 
     # Flip the image horizontally and save it again
