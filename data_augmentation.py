@@ -123,9 +123,11 @@ for filename in os.listdir(train_dir):
     im = im.rotate(270)
     im.save(os.path.join(save_dir, 'rotated_270_' + filename))
     
-    im = im.rotate(135)
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.rotate(180)
     im.save(os.path.join(save_dir, 'rotated_180_' + filename))
     
+    im = Image.open(os.path.join(train_dir, filename))
     im = im.rotate(90)
     im.save(os.path.join(save_dir, 'rotated_90_' + filename))
 
