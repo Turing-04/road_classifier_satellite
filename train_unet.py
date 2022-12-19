@@ -10,7 +10,6 @@ from data import DriveDataset
 from model import build_unet
 from loss import DiceLoss, DiceBCELoss
 from utils import seeding, create_dir, epoch_time
-from resnet34 import ResNet34
 
 def train(model, loader, optimizer, loss_fn, device):
     epoch_loss = 0.0
@@ -92,8 +91,7 @@ if __name__ == "__main__":
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    # model = build_unet()
-    model = ResNet34()
+    model = build_unet()
     
     model = model.to(device)
 

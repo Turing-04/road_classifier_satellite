@@ -1,93 +1,131 @@
-# import PyTorch, Torchvision packages
-import torch
-import torch.optim as optim
-import torch.nn.functional as F
-import torchvision
-from torch.autograd import Variable
-from torchvision import transforms
-
-# import Numpy
-import numpy as np
-
-# import Maplotlib
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-
-#import PIL
-from PIL import Image
-
-# import Python standard library
+import os
 import time
-import os,sys
-import random
+from glob import glob
 
-# import custom modules
-from image_manipulation import *
-from models import *
-from submission_helper import *
-from implementations import *
+import torch
+from torch.utils.data import DataLoader
+import torch.nn as nn
 
-# Helper functions
+from data import DriveDataset
+from loss import DiceLoss, DiceBCELoss
+from utils import seeding, create_dir, epoch_time
+from resnet_50 import resnet_50
 
-def resnet_run(starting_model = "", is_segmented = False):
+def train(model, loader, optimizer, loss_fn, device):
+    epoch_loss = 0.0
 
-    
-    # If installed, cuda allows to decrese computational time a lot
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    # Choosing the model
+    model.train()
+    for x, y in loader:
+        x = x.to(device, dtype=torch.float32)
+        y = y.to(device, dtype=torch.float32)
 
-    if(starting_model == ""):
-        if(not is_segmented):
-            model, _, _ = train()
-        else:
-            model, _, _ = train(augmentation = "segmented")
-    else:
-            
-        try:
-            # Definition of model
-            model = resnet_50(device, starting_model)
-        except:
-            print("Seems like the model is not present. Please download it as documented in README.md")
-            raise SystemExit
-    
-    
-    # Load test data set
-    if (is_segmented):
-        # Peculiar segmented data set
-        
-        test = np.array(np.load("data/npydata/seg_crop_test.npy").swapaxes(1,3).swapaxes(2,3))
-        test_images=[]
-        for i in range(int(np.shape(test)[0]/9)):
-            test_images.append(uncrop_256_to_608(test[i*9:(i+1)*9]/255))
+        optimizer.zero_grad()
+        y_pred = model(x)
+        loss = loss_fn(y_pred, y)
+        loss.backward()
+        optimizer.step()
+        epoch_loss += loss.item()
 
-        test_images = np.array(test_images)
+    epoch_loss = epoch_loss/len(loader)
+    return epoch_loss
 
-    else:
-        test_images = load_test()
-        
-    
-    # Run the test
-    pred = run_test(test_images, model, device)
+def evaluate(model, loader, loss_fn, device):
+    epoch_loss = 0.0
 
-    # Creates the submission
-    
-    if os.path.exists("ResNet"):
-        submission_filename = "ResNet/results/submission.csv"
-    else:
-        submission_filename = "results/submission.csv"
-    masks_to_submission(submission_filename, *pred)
+    model.eval()
+    with torch.no_grad():
+        for x, y in loader:
+            x = x.to(device, dtype=torch.float32)
+            y = y.to(device, dtype=torch.float32)
 
+            y_pred = model(x)
+            loss = loss_fn(y_pred, y)
+            epoch_loss += loss.item()
+
+        epoch_loss = epoch_loss/len(loader)
+    return epoch_loss
 
 if __name__ == "__main__":
-    """
-    Vary the parameter in train to obtain submissions:
-    starting_model (string) :   This parameters allows you to start the training with a pretrained model. Specify the
-                                name of the file in the results folder, without specifying the name of the folder. If
-                                you don't want a starting model, either don't specify this input, or write "".
-                                Default value: ""
-    is_segmented (bool) :       Specify whether you want to use the segemented data set.
-                                Default value : False
-    """
+    """ Seeding """
+    seeding(42)
 
-    resnet_run()
+    """ Directories """
+    create_dir("weights")
+
+    """ Load dataset """
+    train_x = sorted(glob("training_256/images/expanded/*"))
+    train_y = sorted(glob("training_256/groundtruth/expanded/*"))
+
+    valid_x = sorted(glob("training_256/images/default/*"))
+    valid_y = sorted(glob("training_256/groundtruth/default/*"))
+
+    data_str = f"Dataset Size:\nTrain: {len(train_x)} - Valid: {len(valid_x)}\n"
+    print(data_str)
+
+    """ Hyperparameters """
+    H = 400
+    W = 400
+    size = (H, W)
+    batch_size = 2
+    num_epochs = 50
+    lr = 1e-4
+    checkpoint_path = "weights/checkpoint_resnet.pth"
+
+    """ Dataset and loader """
+    train_dataset = DriveDataset(train_x, train_y)
+    valid_dataset = DriveDataset(valid_x, valid_y)
+
+    train_loader = DataLoader(
+        dataset=train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=2
+    )
+
+    valid_loader = DataLoader(
+        dataset=valid_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=2
+    )
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # model = build_unet()
+    model = resnet_50(device)
+    
+    # model = model.to(device)
+
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, verbose=True)
+    loss_fn = DiceBCELoss()
+
+    if os.path.exists(checkpoint_path):
+        model.load_state_dict(torch.load(checkpoint_path))
+        data_str = f"Checkpoint loaded: {checkpoint_path}"
+        print(data_str)
+
+    """ Training the model """
+    best_valid_loss = float("inf")
+
+    for epoch in range(num_epochs):
+        start_time = time.time()
+
+        train_loss = train(model, train_loader, optimizer, loss_fn, device)
+        valid_loss = evaluate(model, valid_loader, loss_fn, device)
+
+        """ Saving the model """
+        if valid_loss < best_valid_loss:
+            data_str = f"Valid loss improved from {best_valid_loss:2.4f} to {valid_loss:2.4f}. Saving checkpoint: {checkpoint_path}"
+            print(data_str)
+
+            best_valid_loss = valid_loss
+            torch.save(model.state_dict(), checkpoint_path)
+
+        end_time = time.time()
+        epoch_mins, epoch_secs = epoch_time(start_time, end_time)
+
+        data_str = f'Epoch: {epoch+1:02} | Epoch Time: {epoch_mins}m {epoch_secs}s\n'
+        data_str += f'\tTrain Loss: {train_loss:.3f}\n'
+        data_str += f'\t Val. Loss: {valid_loss:.3f}\n'
+        print(data_str)
