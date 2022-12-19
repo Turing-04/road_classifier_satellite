@@ -8,6 +8,11 @@ Epoch: 03 | Epoch Time: 8m 6s
         Train Loss: 0.262
          Val. Loss: 0.345
 
+internet RESNET
+Epoch: 04 | Epoch Time: 2m 37s
+        Train Loss: 1.428
+         Val. Loss: 1.425
+
 Augmentation: no contrast, hue or saturation variation, maybe some brightness variations to adapt to roads different dark levels
 Zoom can vary => crops generated from each quarter with 0.8 factor rescale
 

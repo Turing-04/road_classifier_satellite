@@ -10,6 +10,7 @@ from data import DriveDataset
 from loss import DiceLoss, DiceBCELoss
 from utils import seeding, create_dir, epoch_time
 from resnet_50 import resnet_50
+from resnet_other import RESUNET
 
 def train(model, loader, optimizer, loss_fn, device):
     epoch_loss = 0.0
@@ -92,9 +93,9 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # model = build_unet()
-    model = resnet_50(device)
-    
-    # model = model.to(device)
+    # model = resnet_50(device)
+    model = RESUNET()
+    model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, verbose=True)
