@@ -24,12 +24,12 @@ for filename in tqdm(os.listdir(train_dir)):
 
     # adjust the brightness of the image
     im = ImageEnhance.Brightness(im).enhance(random.uniform(0.8,1.2))
-    im.rotate(90) #we first apply a rotation
+    im = im.rotate(90) #we first apply a rotation
     im.save(os.path.join(save_dir, 'brightness_' + filename))
     
     # play with contrast 
     im = Image.open(os.path.join(train_dir, filename))
-    im.rotate(270) #first apply a rotation to not always train on variations of the same image
+    im = im.rotate(270) #first apply a rotation to not always train on variations of the same image
     contrast_factor = random.uniform(0.7, 1.3)
     im = ImageEnhance.Contrast(im).enhance(contrast_factor)
     im.save(os.path.join(save_dir, 'contrast_' + filename))
