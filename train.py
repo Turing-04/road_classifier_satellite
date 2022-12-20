@@ -6,8 +6,7 @@ import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
 
-from data import DriveDataset
-from model import build_unet
+from dataset import DriveDataset
 from loss import DiceLoss, DiceBCELoss
 import sys
 from utils import seeding, create_dir, epoch_time
