@@ -4,6 +4,7 @@ import os
 import numpy as np
 import matplotlib.image as mpimg
 import re
+import sys
 
 foreground_threshold = 0.25 # percentage of pixels > 1 required to assign a foreground label to a patch
 
@@ -37,10 +38,10 @@ def masks_to_submission(submission_filename, *image_filenames):
 
 
 if __name__ == '__main__':
-    submission_filename = 'submission.csv'
+    submission_filename = 'submissions/submission_' + sys.argv[0] + '.csv'
     image_filenames = []
     for i in range(1, 51):
-        image_filename = 'results/test_' + str(i) + '.png'
+        image_filename = 'results/' + sys.argv[0] + '/test_' + str(i) + '.png'
         print(image_filename)
         image_filenames.append(image_filename)
     masks_to_submission(submission_filename, *image_filenames)

@@ -8,3 +8,5 @@ validation data is stored in the training/images/default and training/groundtrut
 training data is stored in the training/images/expanded and training/groundtruth/expanded folders
 
 test images are stored in the test folder with no subfolders
+
+

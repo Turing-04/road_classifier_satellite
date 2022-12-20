@@ -8,10 +8,19 @@ Epoch: 03 | Epoch Time: 8m 6s
         Train Loss: 0.262
          Val. Loss: 0.345
 
-internet RESNET
+internet RESNET (stuck)
 Epoch: 04 | Epoch Time: 2m 37s
         Train Loss: 1.428
          Val. Loss: 1.425
+
+other RESNET
+Valid loss improved from 0.1531 to 0.1487. Saving checkpoint: weights/checkpoint_resnet.pth
+Epoch: 09 | Epoch Time: 5m 5s
+        Train Loss: 0.266
+         Val. Loss: 0.149
+
+
+
 
 Augmentation: no contrast, hue or saturation variation, maybe some brightness variations to adapt to roads different dark levels
 Zoom can vary => crops generated from each quarter with 0.8 factor rescale
