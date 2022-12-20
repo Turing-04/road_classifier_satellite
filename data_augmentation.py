@@ -3,15 +3,18 @@ from PIL import Image, ImageEnhance
 from skimage.util import random_noise
 import random
 import numpy as np
+import torchvision.transforms.functional as F
+from tqdm import tqdm
 
 # Set the location of the training images
 train_dir = 'training/images/default'
 
 # Set the location where the augmented images will be saved
-save_dir = 'training/images/expanded'
+save_dir = 'training/images/training'
 
 # Loop through all images in the training folder
-for filename in os.listdir(train_dir):
+print("Performing data augmentation on the images")
+for filename in tqdm(os.listdir(train_dir)):
 
     # Open the image
     im = Image.open(os.path.join(train_dir, filename))
@@ -20,12 +23,14 @@ for filename in os.listdir(train_dir):
     im.save(os.path.join(save_dir,"rotated_0_" + filename))
 
     # adjust the brightness of the image
-    im = ImageEnhance.Brightness(im).enhance(random.uniform(0.75,1.25))
+    im = ImageEnhance.Brightness(im).enhance(random.uniform(0.8,1.2))
+    im.rotate(90) #we first apply a rotation
     im.save(os.path.join(save_dir, 'brightness_' + filename))
     
     # play with contrast 
     im = Image.open(os.path.join(train_dir, filename))
-    contrast_factor = random.uniform(0.5, 1.5)
+    im.rotate(270) #first apply a rotation to not always train on variations of the same image
+    contrast_factor = random.uniform(0.7, 1.3)
     im = ImageEnhance.Contrast(im).enhance(contrast_factor)
     im.save(os.path.join(save_dir, 'contrast_' + filename))
 
@@ -44,9 +49,7 @@ for filename in os.listdir(train_dir):
 
     # Adjust the huing of the image
     im = Image.open(os.path.join(train_dir, filename))
-    im = im.convert('HSV')
-    im = ImageEnhance.Color(im).enhance(random.uniform(-0.1,0.1))
-    im = im.convert('RGB')
+    im = F.adjust_hue(im, random.uniform(-0.1,0.1))    
     im.save(os.path.join(save_dir, 'hue_' + filename))
 
     #adjust the saturation of the image 
@@ -59,7 +62,11 @@ for filename in os.listdir(train_dir):
     # Flip the image horizontally and save it again
     im = Image.open(os.path.join(train_dir, filename))
     im = im.transpose(Image.FLIP_LEFT_RIGHT)
-    im.save(os.path.join(save_dir, 'flipped_' + filename))
+    im.save(os.path.join(save_dir, 'flipped_LR_' + filename))
+    
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.transpose(Image.FLIP_TOP_BOTTOM)
+    im.save(os.path.join(save_dir, 'flipped_TB_' + filename))
     
 
 ### disable for performance reasons ?
@@ -73,7 +80,6 @@ for filename in os.listdir(train_dir):
     # im.save(os.path.join(save_dir, 'noisy_' + filename))
         
     
-
 ### disabled for performance reasons
 '''
     # Crop the image and save it again
@@ -102,12 +108,11 @@ im.save(os.path.join(save_dir, 'color_shifted_' + filename))
 train_dir = 'training/groundtruth/default'
 
 # Set the location where the augmented images will be saved
-save_dir = 'training/groundtruth/expanded'
+save_dir = 'training/groundtruth/training'
 
-## Now do the same for there groundtruth equivalent
-
+print("Performing data augmentation on the grountruth images")
 # Loop through all images in the training folder
-for filename in os.listdir(train_dir):
+for filename in tqdm(os.listdir(train_dir)):
 
     # Open the image
     im = Image.open(os.path.join(train_dir, filename))
@@ -116,6 +121,7 @@ for filename in os.listdir(train_dir):
     im.save(os.path.join(save_dir, "rotated_0_" + filename))
 
     # do not adjust the brightness of the mask
+    im = im.rotate(90) # apply rotation before
     im.save(os.path.join(save_dir, 'brightness_' + filename))
 
     # Rotate the image and save it again
@@ -134,7 +140,11 @@ for filename in os.listdir(train_dir):
     # Flip the image and save it again
     im = Image.open(os.path.join(train_dir, filename))
     im = im.transpose(Image.FLIP_LEFT_RIGHT)
-    im.save(os.path.join(save_dir, 'flipped_' + filename))
+    im.save(os.path.join(save_dir, 'flipped_LR_' + filename))
+    
+    im = Image.open(os.path.join(train_dir, filename))
+    im = im.transpose(Image.FLIP_TOP_BOTTOM)
+    im.save(os.path.join(save_dir, 'flipped_TB_' + filename))
 
 
 ### disable for performance reasons ?
@@ -146,4 +156,5 @@ for filename in os.listdir(train_dir):
    # im.save(os.path.join(save_dir, 'noisy_' + filename))
     im.save(os.path.join(save_dir, 'hue_' + filename))
     im.save(os.path.join(save_dir, 'saturation_' + filename))
+    im.rotate(270) #first apply a rotation to not always train on variations of the same image
     im.save(os.path.join(save_dir, 'constrast_' + filename))

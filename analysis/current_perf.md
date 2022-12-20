@@ -31,3 +31,225 @@ losses=[0.8216245493623946, 0.5422054453028573, 0.45624896215067967, 0.394501058
 
 50 epochs, cnn8, F1: 0.554, acc: 0.800
 [1.5586756091647678, 1.4605056929588318, 1.4021497941017151, 1.3518880359331766, 1.3100710344314574, 1.2745235747761197, 1.2417953130933974, 1.2126108479499818, 1.1859637170367772, 1.1622294678952958, 1.141787407928043, 1.1223552689287397, 1.1065204768710666, 1.0953971486621432, 1.081367579433653, 1.0664101282755534, 1.0624842802683512, 1.0508561046918232, 1.0461829348405203, 1.042060103946262, 1.0409312799241808, 1.0311749249034459, 1.0283355422814686, 1.0296556454234653, 1.035030593474706, 1.0285386796792348, 1.0279461379845938, 1.0237841737270355, 1.0231368466218314, 1.0220510600672827, 1.022900956471761, 1.0219719984796312, 1.0192062275939517, 1.0188792272408804, 1.0162661618656583, 1.01520563032892, 1.0182915759086608, 1.0139401557710435, 1.0150955737961662, 1.0159433420499167, 1.0154965586132474, 1.0165765990151299, 1.0153937281502619, 1.0114351190461053, 1.0122538846068911, 1.0124932984511057, 1.0065509924623701, 1.0092794570657941, 1.00691515300009, 1.0052200384934744]
+
+
+
+
+50 epochs, unet, augmented antoine, 2400 images, Acc=0.889, F1=0.941:
+Valid loss improved from inf to 0.4523. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 01 | Epoch Time: 1m 5s
+	Train Loss: 0.688
+	 Val. Loss: 0.452
+
+Valid loss improved from 0.4523 to 0.3122. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 02 | Epoch Time: 0m 57s
+	Train Loss: 0.480
+	 Val. Loss: 0.312
+
+Valid loss improved from 0.3122 to 0.2773. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 03 | Epoch Time: 0m 57s
+	Train Loss: 0.421
+	 Val. Loss: 0.277
+
+Valid loss improved from 0.2773 to 0.2530. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 04 | Epoch Time: 0m 56s
+	Train Loss: 0.388
+	 Val. Loss: 0.253
+
+Valid loss improved from 0.2530 to 0.2162. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 05 | Epoch Time: 0m 57s
+	Train Loss: 0.365
+	 Val. Loss: 0.216
+
+Epoch: 06 | Epoch Time: 0m 56s
+	Train Loss: 0.348
+	 Val. Loss: 0.223
+
+Valid loss improved from 0.2162 to 0.2003. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 07 | Epoch Time: 0m 57s
+	Train Loss: 0.342
+	 Val. Loss: 0.200
+
+Valid loss improved from 0.2003 to 0.1887. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 08 | Epoch Time: 0m 57s
+	Train Loss: 0.323
+	 Val. Loss: 0.189
+
+Epoch: 09 | Epoch Time: 0m 56s
+	Train Loss: 0.308
+	 Val. Loss: 0.211
+
+Valid loss improved from 0.1887 to 0.1853. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 10 | Epoch Time: 0m 57s
+	Train Loss: 0.304
+	 Val. Loss: 0.185
+
+Valid loss improved from 0.1853 to 0.1679. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 11 | Epoch Time: 0m 57s
+	Train Loss: 0.302
+	 Val. Loss: 0.168
+
+Valid loss improved from 0.1679 to 0.1599. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 12 | Epoch Time: 0m 56s
+	Train Loss: 0.294
+	 Val. Loss: 0.160
+
+Epoch: 13 | Epoch Time: 0m 56s
+	Train Loss: 0.293
+	 Val. Loss: 0.164
+
+Epoch: 14 | Epoch Time: 0m 56s
+	Train Loss: 0.285
+	 Val. Loss: 0.160
+
+Epoch: 15 | Epoch Time: 0m 56s
+	Train Loss: 0.294
+	 Val. Loss: 0.161
+
+Epoch: 16 | Epoch Time: 0m 56s
+	Train Loss: 0.279
+	 Val. Loss: 0.165
+
+Epoch: 17 | Epoch Time: 0m 57s
+	Train Loss: 0.279
+	 Val. Loss: 0.176
+
+Valid loss improved from 0.1599 to 0.1588. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 18 | Epoch Time: 0m 57s
+	Train Loss: 0.286
+	 Val. Loss: 0.159
+
+Valid loss improved from 0.1588 to 0.1529. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 19 | Epoch Time: 0m 57s
+	Train Loss: 0.272
+	 Val. Loss: 0.153
+
+Epoch: 20 | Epoch Time: 0m 56s
+	Train Loss: 0.275
+	 Val. Loss: 0.161
+
+Valid loss improved from 0.1529 to 0.1502. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 21 | Epoch Time: 0m 57s
+	Train Loss: 0.272
+	 Val. Loss: 0.150
+
+Epoch: 22 | Epoch Time: 0m 56s
+	Train Loss: 0.274
+	 Val. Loss: 0.159
+
+Epoch: 23 | Epoch Time: 0m 56s
+	Train Loss: 0.267
+	 Val. Loss: 0.159
+
+Epoch: 24 | Epoch Time: 0m 57s
+	Train Loss: 0.268
+	 Val. Loss: 0.173
+
+Epoch: 25 | Epoch Time: 0m 56s
+	Train Loss: 0.274
+	 Val. Loss: 0.155
+
+Valid loss improved from 0.1502 to 0.1494. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 26 | Epoch Time: 0m 57s
+	Train Loss: 0.271
+	 Val. Loss: 0.149
+
+Valid loss improved from 0.1494 to 0.1462. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 27 | Epoch Time: 0m 57s
+	Train Loss: 0.265
+	 Val. Loss: 0.146
+
+Epoch: 28 | Epoch Time: 0m 56s
+	Train Loss: 0.264
+	 Val. Loss: 0.173
+
+Epoch: 29 | Epoch Time: 0m 56s
+	Train Loss: 0.267
+	 Val. Loss: 0.147
+
+Epoch: 30 | Epoch Time: 0m 56s
+	Train Loss: 0.261
+	 Val. Loss: 0.152
+
+Epoch: 31 | Epoch Time: 0m 56s
+	Train Loss: 0.267
+	 Val. Loss: 0.152
+
+Valid loss improved from 0.1462 to 0.1447. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 32 | Epoch Time: 0m 57s
+	Train Loss: 0.260
+	 Val. Loss: 0.145
+
+Epoch: 33 | Epoch Time: 0m 56s
+	Train Loss: 0.260
+	 Val. Loss: 0.146
+
+Epoch: 34 | Epoch Time: 0m 56s
+	Train Loss: 0.261
+	 Val. Loss: 0.146
+
+Epoch: 35 | Epoch Time: 0m 56s
+	Train Loss: 0.265
+	 Val. Loss: 0.145
+
+Epoch: 36 | Epoch Time: 0m 57s
+	Train Loss: 0.258
+	 Val. Loss: 0.149
+
+Epoch: 37 | Epoch Time: 0m 56s
+	Train Loss: 0.260
+	 Val. Loss: 0.147
+
+Epoch: 38 | Epoch Time: 0m 56s
+	Train Loss: 0.258
+	 Val. Loss: 0.147
+
+Epoch: 39 | Epoch Time: 0m 56s
+	Train Loss: 0.260
+	 Val. Loss: 0.146
+
+Epoch: 40 | Epoch Time: 0m 56s
+	Train Loss: 0.261
+	 Val. Loss: 0.146
+
+Valid loss improved from 0.1447 to 0.1427. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 41 | Epoch Time: 0m 57s
+	Train Loss: 0.256
+	 Val. Loss: 0.143
+
+Epoch: 42 | Epoch Time: 0m 56s
+	Train Loss: 0.260
+	 Val. Loss: 0.144
+
+Valid loss improved from 0.1427 to 0.1418. Saving checkpoint: weights/checkpoint_-f.pth
+Epoch: 43 | Epoch Time: 0m 57s
+	Train Loss: 0.258
+	 Val. Loss: 0.142
+
+Epoch: 44 | Epoch Time: 0m 56s
+	Train Loss: 0.255
+	 Val. Loss: 0.143
+
+Epoch: 45 | Epoch Time: 0m 56s
+	Train Loss: 0.258
+	 Val. Loss: 0.150
+
+Epoch: 46 | Epoch Time: 0m 56s
+	Train Loss: 0.255
+	 Val. Loss: 0.147
+
+Epoch: 47 | Epoch Time: 0m 56s
+	Train Loss: 0.256
+	 Val. Loss: 0.146
+
+Epoch: 48 | Epoch Time: 0m 56s
+	Train Loss: 0.257
+	 Val. Loss: 0.146
+
+Epoch: 49 | Epoch Time: 0m 56s
+	Train Loss: 0.258
+	 Val. Loss: 0.145
+
+Epoch: 50 | Epoch Time: 0m 56s
+	Train Loss: 0.255
+	 Val. Loss: 0.144
