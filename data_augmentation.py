@@ -156,5 +156,5 @@ for filename in tqdm(os.listdir(train_dir)):
    # im.save(os.path.join(save_dir, 'noisy_' + filename))
     im.save(os.path.join(save_dir, 'hue_' + filename))
     im.save(os.path.join(save_dir, 'saturation_' + filename))
-    im.rotate(270) #first apply a rotation to not always train on variations of the same image
+    im = im.rotate(270) #first apply a rotation to not always train on variations of the same image
     im.save(os.path.join(save_dir, 'constrast_' + filename))
