@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     """ Hyperparameters """
     size = (400, 400)
-    batch_size = 2
+    batch_size = 4
     num_epochs = 100
     lr = 1e-4
 

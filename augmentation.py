@@ -16,13 +16,20 @@ def create_variations(name, image, folder, apply_filter):
         im = image.rotate(angle)
         im.save(folder + "rotated_" + str(angle) + "_" + name)
 
-        enhancer = ImageEnhance.Brightness(image)
-        im = enhancer.enhance(random.uniform(0.5, 1.5))
-        im.save(folder + "rotated_" + str(angle) + "_brightness_" + name)
+        width, height = im.size
+        im = im.crop((width * 0.05, height * 0.05, width * 0.95, height * 0.95))
+        im = im.resize((width, height))
+        im.save(folder + "rotated_" + str(angle) + "_cropped_" + name)
 
-        enhancer = ImageEnhance.Contrast(image)
-        im = enhancer.enhance(random.uniform(0.5, 1.5))
-        im.save(folder + "rotated_" + str(angle) + "_contrast_" + name)
+        # enhancer = ImageEnhance.Brightness(image)
+        # if apply_filter:
+        #     im = enhancer.enhance(random.uniform(0.5, 1.5))
+        # im.save(folder + "rotated_" + str(angle) + "_brightness_" + name)
+
+        # enhancer = ImageEnhance.Contrast(image)
+        # if apply_filter:
+        #     im = enhancer.enhance(random.uniform(0.5, 1.5))
+        # im.save(folder + "rotated_" + str(angle) + "_contrast_" + name)
 
 
 

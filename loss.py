@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class DiceLoss(nn.Module):
-    def __init__(self, weight=None, size_average=True):
+    def __init__(self):
         super(DiceLoss, self).__init__()
 
     def forward(self, inputs, targets, smooth=1):
@@ -21,7 +21,7 @@ class DiceLoss(nn.Module):
         return 1 - dice
 
 class DiceBCELoss(nn.Module):
-    def __init__(self, weight=None, size_average=True):
+    def __init__(self):
         super(DiceBCELoss, self).__init__()
 
     def forward(self, inputs, targets, smooth=1):
@@ -39,3 +39,11 @@ class DiceBCELoss(nn.Module):
         Dice_BCE = BCE + dice_loss
 
         return Dice_BCE
+
+class BCELoss(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def forward(self, inputs, targets):
+        return F.binary_cross_entropy(inputs, targets)
+    

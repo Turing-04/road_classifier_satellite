@@ -27,7 +27,7 @@ class conv_block(nn.Module):
 
 class build_resnet(nn.Module):
     def __init__(
-            self, in_channels=3, out_channels=1, features=[64, 128, 256, 512],
+            self, in_channels=3, out_channels=1, features=[64, 128, 256, 512, 1024],
     ):
         super(build_resnet, self).__init__()
         self.ups = nn.ModuleList()
