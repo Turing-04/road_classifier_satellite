@@ -20,8 +20,10 @@ Create a folder named **training** with the following structure:
 
     training
     ├── images
+    │   └── training
     │   └── validation
     └── groundtruth
+        └── training
         └── validation
 
 Copy all training images in the **training/images/validation** folder and all groundtruth images in the **training/groundtruth/validation** folder.
