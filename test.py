@@ -66,7 +66,6 @@ if __name__ == "__main__":
     for i, x in tqdm(enumerate(images), total=len(images)):
         """ Extract the name """
         name = x.split("/")[-1].split(".")[0]
-        name = name.split("\\")[1]
 
         """ Reading image """
         image = cv2.imread(x, cv2.IMREAD_COLOR) ## (400, 400, 3)
