@@ -5,17 +5,11 @@ from glob import glob
 import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
-<<<<<<< HEAD
-=======
-
-from dataset import DriveDataset
-from loss import DiceLoss, DiceBCELoss, BCELoss
->>>>>>> 9868cd233eaf54cb7e4bded3daa8a6f2254ca74c
 import sys
 
 from utilitary.utils import seeding, create_dir, epoch_time
 from utilitary.loss import DiceLoss, DiceBCELoss
-from utilitary.dataset import DriveDataset
+from utilitary.dataset import DriveDataset, DriveDataset_vgg
 
 from models import model_unet
 from models import model_resnet
@@ -81,6 +75,7 @@ if __name__ == "__main__":
     lr = 1e-4
 
     """ Create dataloader """
+    #train_dataset = DriveDataset_vgg(train_x, train_y) for of vgg16
     train_dataset = DriveDataset(train_x, train_y)
 
     train_loader = DataLoader(
@@ -89,7 +84,6 @@ if __name__ == "__main__":
         shuffle=True,
         num_workers=2
     )
-
 
     """ Load the model """
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -105,6 +99,8 @@ if __name__ == "__main__":
         model = model_cnn8.build_cnn8()
     elif model_name == "cnn16":
         model = model_cnn16.build_cnn16()
+    # elif model_name == "vgg16":	
+    #     model = torch.hub.load('pytorch/vision:v0.10.0', 'vgg16', pretrained=False)
     else:
         raise Exception("Please provide a model name")
     model = model.to(device)

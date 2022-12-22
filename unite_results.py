@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 import glob
-from utils import seeding, create_dir, epoch_time
+from utilitary.utils import seeding, create_dir, epoch_time
 import sys
 
 model_name = sys.argv[1]
