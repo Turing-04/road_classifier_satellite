@@ -91,9 +91,3 @@ class build_unet(nn.Module):
         outputs = self.outputs(d4)
 
         return outputs
-
-if __name__ == "__main__":
-    x = torch.randn((2, 3, 400, 400))
-    f = build_unet()
-    y = f(x)
-    print(y.shape)
