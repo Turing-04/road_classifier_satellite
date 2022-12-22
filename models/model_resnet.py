@@ -25,54 +25,74 @@ class conv_block(nn.Module):
 
         return x
 
+class decoder_block(nn.Module):
+    def __init__(self, in_c, out_c):
+        super().__init__()
+
+        self.up = nn.ConvTranspose2d(in_c, out_c, kernel_size=2, stride=2, padding=0)
+        self.conv = conv_block(out_c+out_c, out_c)
+
+    def forward(self, inputs, skip):
+        x = self.up(inputs)
+        x = torch.cat([x, skip], axis=1)
+        x = self.conv(x)
+        return x
+
 class build_resnet(nn.Module):
-    def __init__(
-            self, in_channels=3, out_channels=1, features=[64, 128, 256, 512, 1024],
-    ):
+    def __init__(self):
         super(build_resnet, self).__init__()
-        self.ups = nn.ModuleList()
-        self.downs = nn.ModuleList()
-        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
 
-        # Down part of UNET
-        for feature in features:
-            self.downs.append(conv_block(in_channels, feature))
-            in_channels = feature
+        """ Encoder """
+        self.e1 = conv_block(3, 64)
+        self.e2 = conv_block(64, 128)
+        self.e3 = conv_block(128, 256)
+        self.e4 = conv_block(256, 512)
+        self.e5 = conv_block(512, 1024)
 
-        # Up part of UNET
-        for feature in reversed(features):
-            self.ups.append(
-                nn.ConvTranspose2d(
-                    feature*2, feature, kernel_size=2, stride=2,
-                )
-            )
-            self.ups.append(conv_block(feature*2, feature))
+        """ Bottleneck """
+        self.b = conv_block(1024, 2048)
 
-        self.bottleneck = conv_block(features[-1], features[-1]*2)
-        self.final_conv = nn.Conv2d(features[0], out_channels, kernel_size=1)
+        """ Decoder """
+        self.d1 = nn.ConvTranspose2d(2048, 1024, kernel_size=2, stride=2, padding=0)
+        self.d1_2 = conv_block(2048, 1024)
+        self.d2 = nn.ConvTranspose2d(1024, 512, kernel_size=2, stride=2, padding=0)
+        self.d2_2 = conv_block(1024, 512)
+        self.d3 = nn.ConvTranspose2d(512, 256, kernel_size=2, stride=2, padding=0)
+        self.d3_2 = conv_block(512, 256)
+        self.d4 = nn.ConvTranspose2d(256, 128, kernel_size=2, stride=2, padding=0)
+        self.d4_2 = conv_block(256, 128)
+        self.d5 = nn.ConvTranspose2d(128, 64, kernel_size=2, stride=2, padding=0)
+        self.d5_2 = conv_block(128, 64)
+
+        self.d = nn.ModuleList([self.d1, self.d1_2, self.d2, self.d2_2, self.d3, self.d3_2, self.d4, self.d4_2, self.d5, self.d5_2])
+        self.e = nn.ModuleList([self.e1, self.e2, self.e3, self.e4, self.e5])
+        self.p = nn.MaxPool2d(kernel_size=2, stride=2)
+        
+        """ Classifier """
+        self.outputs = nn.Conv2d(64, 1, kernel_size=1, padding=0)
+
 
     def forward(self, x):
-        skip_connections = []
+        skips = []
 
-        for down in self.downs:
+        for down in self.e:
             x = down(x)
-            skip_connections.append(x)
-            x = self.pool(x)
+            skips.append(x)
+            x = self.p(x)
 
-        x = self.bottleneck(x)
-        skip_connections = skip_connections[::-1]
+        x = self.b(x)
+        skips = skips[::-1]
 
-        for idx in range(0, len(self.ups), 2):
-            x = self.ups[idx](x)
-            skip_connection = skip_connections[idx//2]
+        for idx in range(0, len(self.d), 2):
+            x = self.d[idx](x)
+            skip = skips[idx//2]
 
-            if x.shape != skip_connection.shape:
-                x = TF.resize(x, size=skip_connection.shape[2:])
+            if x.shape != skip.shape:
+                x = TF.resize(x, size=skip.shape[2:])
 
-            concat_skip = torch.cat((skip_connection, x), dim=1)
-            x = self.ups[idx+1](concat_skip)
+            x = self.d[idx+1](torch.cat((skip, x), dim=1))
 
-        return self.final_conv(x)
+        return self.outputs(x)
 
 if __name__ == "__main__":
     x = torch.randn((2, 3, 400, 400))

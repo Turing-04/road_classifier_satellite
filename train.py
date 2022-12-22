@@ -5,16 +5,11 @@ from glob import glob
 import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
-<<<<<<< HEAD
-=======
 
-from dataset import DriveDataset
-from loss import DiceLoss, DiceBCELoss, BCELoss
->>>>>>> 9868cd233eaf54cb7e4bded3daa8a6f2254ca74c
 import sys
 
 from utilitary.utils import seeding, create_dir, epoch_time
-from utilitary.loss import DiceLoss, DiceBCELoss
+from utilitary.loss import DiceLoss, DiceBCELoss, BCELoss
 from utilitary.dataset import DriveDataset
 
 from models import model_unet

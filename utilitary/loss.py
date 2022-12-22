@@ -8,7 +8,6 @@ class DiceLoss(nn.Module):
 
     def forward(self, inputs, targets, smooth=1):
 
-        #comment out if your model contains a sigmoid or equivalent activation layer
         inputs = torch.sigmoid(inputs)
 
         #flatten label and prediction tensors
@@ -26,7 +25,6 @@ class DiceBCELoss(nn.Module):
 
     def forward(self, inputs, targets, smooth=1):
 
-        #comment out if your model contains a sigmoid or equivalent activation layer
         inputs = torch.sigmoid(inputs)
 
         #flatten label and prediction tensors
@@ -42,8 +40,14 @@ class DiceBCELoss(nn.Module):
 
 class BCELoss(nn.Module):
     def __init__(self) -> None:
-        super().__init__()
+        super(BCELoss, self).__init__()
 
     def forward(self, inputs, targets):
-        return F.binary_cross_entropy(inputs, targets)
+        inputs = torch.sigmoid(inputs)
+
+        #flatten label and prediction tensors
+        inputs = inputs.view(-1)
+        targets = targets.view(-1)
+
+        return F.binary_cross_entropy(inputs, targets, reduction='mean')
     
