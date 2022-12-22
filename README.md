@@ -20,11 +20,11 @@ Create a folder named **training** with the following structure:
 
     training
     ├── images
-    │   └── training
-    │   └── validation
+    │   └── default
+    │   └── expanded
     └── groundtruth
-        └── training
-        └── validation
+        └── default
+        └── expanded
 
 Copy all training images in the **training/images/validation** folder and all groundtruth images in the **training/groundtruth/validation** folder.
 
@@ -56,6 +56,8 @@ To train a model, run:
     python train.py cnn4
     python train.py cnn8
     python train.py cnn16
+
+This will create a Folder weights in which the **trained** models are stored. 
 
 To test a model, run:
 

@@ -5,11 +5,17 @@ from glob import glob
 import torch
 from torch.utils.data import DataLoader
 import torch.nn as nn
+<<<<<<< HEAD
+=======
 
 from dataset import DriveDataset
 from loss import DiceLoss, DiceBCELoss, BCELoss
+>>>>>>> 9868cd233eaf54cb7e4bded3daa8a6f2254ca74c
 import sys
-from utils import seeding, create_dir, epoch_time
+
+from utilitary.utils import seeding, create_dir, epoch_time
+from utilitary.loss import DiceLoss, DiceBCELoss
+from utilitary.dataset import DriveDataset
 
 from models import model_unet
 from models import model_resnet
@@ -61,13 +67,11 @@ if __name__ == "__main__":
     create_dir("weights")
 
     """ Load dataset """
-    train_x = sorted(glob("training/images/training/*"))
-    train_y = sorted(glob("training/groundtruth/training/*"))
+    train_x = sorted(glob("training/images/expanded/*"))
+    train_y = sorted(glob("training/groundtruth/expanded/*"))
 
-    valid_x = sorted(glob("training/images/validation/*"))
-    valid_y = sorted(glob("training/groundtruth/validation/*"))
 
-    data_str = f"Dataset Size:\nTrain: {len(train_x)} - Valid: {len(valid_x)}\n"
+    data_str = f"Dataset Size:\nTrain: {len(train_x)} \n"
     print(data_str)
 
     """ Hyperparameters """
@@ -78,7 +82,6 @@ if __name__ == "__main__":
 
     """ Create dataloader """
     train_dataset = DriveDataset(train_x, train_y)
-    valid_dataset = DriveDataset(valid_x, valid_y)
 
     train_loader = DataLoader(
         dataset=train_dataset,
@@ -87,12 +90,6 @@ if __name__ == "__main__":
         num_workers=2
     )
 
-    valid_loader = DataLoader(
-        dataset=valid_dataset,
-        batch_size=batch_size,
-        shuffle=False,
-        num_workers=2
-    )
 
     """ Load the model """
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -122,19 +119,15 @@ if __name__ == "__main__":
         print(f"Checkpoint loaded: {checkpoint_path}")
 
     """ Training the model """
-    best_valid_loss = float("inf")
 
     for epoch in range(num_epochs):
         start_time = time.time()
 
         train_loss = train(model, train_loader, optimizer, loss_fn, device)
-        valid_loss = evaluate(model, valid_loader, loss_fn, device)
 
-        """ Saving the model """
-        if valid_loss < best_valid_loss:
-            print(f"Valid loss improved from {best_valid_loss:2.4f} to {valid_loss:2.4f}. Saving checkpoint: {checkpoint_path}")
-
-            best_valid_loss = valid_loss
+        """ Saving the model """ 
+        #once every 5 five epoch to save some computing power
+        if epoch % 5 == 0:
             torch.save(model.state_dict(), checkpoint_path)
 
         end_time = time.time()
@@ -142,5 +135,4 @@ if __name__ == "__main__":
 
         data_str = f'Epoch: {epoch+1:02} | Epoch Time: {epoch_mins}m {epoch_secs}s\n'
         data_str += f'\tTrain Loss: {train_loss:.3f}\n'
-        data_str += f'\t Val. Loss: {valid_loss:.3f}\n'
         print(data_str)

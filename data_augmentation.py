@@ -10,14 +10,11 @@ from tqdm import tqdm
 train_dir = 'training/images/default'
 
 # Set the location where the augmented images will be saved
-save_dir = 'training/images/training'
+save_dir = 'training/images/expanded'
 
 # Loop through all images in the training folder
 print("Performing data augmentation on the images")
 for filename in tqdm(os.listdir(train_dir)):
-
-    # Open the image
-    im = Image.open(os.path.join(train_dir, filename))
     
     # for different rotations, namely 0, 90, 180, 270
     # basic rotations + cropping
@@ -34,6 +31,7 @@ for filename in tqdm(os.listdir(train_dir)):
         
 
     # adjust the brightness of the image
+    im = Image.open(os.path.join(train_dir, filename))
     im = ImageEnhance.Brightness(im).enhance(random.uniform(0.8,1.2))
     im = im.rotate(90) #we first apply a rotation
     im.save(os.path.join(save_dir, 'brightness_' + filename))
@@ -67,8 +65,8 @@ for filename in tqdm(os.listdir(train_dir)):
     im.save(os.path.join(save_dir, 'flipped_TB_' + filename))
     
 
-### disabled for performance reasons 
-        # Add random gaussian noise to the image and save it again
+######      disabled for performance reasons        #######     
+ # Add random gaussian noise to the image and save it again
     # im = Image.open(os.path.join(train_dir, filename))
     # im_array = np.array(im)
     # im_array = random_noise(im_array, mode='gaussian')
@@ -77,23 +75,12 @@ for filename in tqdm(os.listdir(train_dir)):
     # im = Image.fromarray(im_array)
     # im.save(os.path.join(save_dir, 'noisy_' + filename))
         
-    
-### disabled for performance reasons
-    # Shift the colors of the image and save it again
-    # First, create an ImageEnhance object for each color channel
-    # red_enhancer = ImageEnhance.Color(im)
-    # green_enhancer = ImageEnhance.Color(im)
-    # blue_enhancer = ImageEnhance.Color(im)
-    
-# Save the color-shifted image to the expanded folder
-#im.save(os.path.join(save_dir, 'color_shifted_' + filename))
-
 
 # Set the location of the groundtruth images
 train_dir = 'training/groundtruth/default'
 
 # Set the location where the augmented images will be saved
-save_dir = 'training/groundtruth/training'
+save_dir = 'training/groundtruth/expanded'
 
 print("Performing data augmentation on the grountruth images")
 # Loop through all images in the training folder
@@ -129,7 +116,7 @@ for filename in tqdm(os.listdir(train_dir)):
 
     # We do NOT add noise nor hue nor saturation nor constrast to the mask !
     im = Image.open(os.path.join(train_dir, filename))
-   # im.save(os.path.join(save_dir, 'noisy_' + filename)) //no noise for perf reasons
+   # im.save(os.path.join(save_dir, 'noisy_' + filename)) # No noise for perf reasons
     im.save(os.path.join(save_dir, 'hue_' + filename))
     im.save(os.path.join(save_dir, 'saturation_' + filename))
     im = im.rotate(270) #first apply a rotation to not always train on variations of the same image

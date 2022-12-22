@@ -15,7 +15,7 @@ from models import model_cnn4
 from models import model_cnn8
 from models import model_cnn16
 
-from utils import create_dir, seeding
+from utilitary.utils import create_dir, seeding
 import sys
 
 
