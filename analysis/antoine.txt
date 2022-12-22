@@ -8,10 +8,6 @@ Epoch: 03 | Epoch Time: 8m 6s
         Train Loss: 0.262
          Val. Loss: 0.345
 
-internet RESNET (stuck)
-Epoch: 04 | Epoch Time: 2m 37s
-        Train Loss: 1.428
-         Val. Loss: 1.425
 
 other RESNET
 Valid loss improved from 0.1531 to 0.1487. Saving checkpoint: weights/checkpoint_resnet.pth
@@ -29,48 +25,8 @@ Zoom can vary => crops generated from each quarter with 0.8 factor rescale
 
 
 
-""" CROPPING
-width, height = image.size
-    cropped_left = int(width * 0.2)
-    cropped_top = int(height * 0.2)
-    cropped_right = width - cropped_left
-    cropped_bottom = height - cropped_top
-    left = 0
-    top = 0
-    right = width
-    bottom = height
-
-    cropped_1 = image.crop((left, cropped_top, cropped_right, bottom))
-    cropped_2 = image.crop((left, top, cropped_right, cropped_bottom))
-    cropped_3 = image.crop((cropped_left, top, right, cropped_bottom))
-    cropped_4 = image.crop((cropped_left, cropped_top, right, bottom))
-
-    cropped_1 = cropped_1.resize((width, height))
-    cropped_2 = cropped_2.resize((width, height))
-    cropped_3 = cropped_3.resize((width, height))
-    cropped_4 = cropped_4.resize((width, height))
-
-    cropped_1.save(folder + 'cropped_1_' + name)
-    cropped_2.save(folder + 'cropped_2_' + name)
-    cropped_3.save(folder + 'cropped_3_' + name)
-    cropped_4.save(folder + 'cropped_4_' + name)
-"""
-
-
-""" BRIGHTNESS AND CONTRAST
-enhancer = ImageEnhance.Brightness(image)
-    im = enhancer.enhance(1.2)
-    im.save(folder + "brightness_plus_" + name)
-    im = enhancer.enhance(0.8)
-    im.save(folder + "brightness_minus_" + name)
-
-    enhancer = ImageEnhance.Contrast(image)
-    im = enhancer.enhance(1.05)
-    im.save(folder + "contrast_plus_" + name)
-    im = enhancer.enhance(0.95)
-    im.save(folder + "minus" + name)
-"""
 
 
 
-TODO: try without bias
+BIAS => worse
+batch_size = 2 => else worse

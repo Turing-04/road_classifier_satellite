@@ -33,9 +33,10 @@ if __name__ == "__main__":
     seeding(42)
     create_dir("results")
     create_dir("results/" + model_name)
+    create_dir("results/" + model_name + "_400")
 
     """ Load dataset """
-    images = sorted(glob("test/*"))
+    images = sorted(glob("test_400/*"))
 
     """ Define hyperparameters """
     size = (400, 400)
@@ -65,7 +66,7 @@ if __name__ == "__main__":
 
     for i, x in tqdm(enumerate(images), total=len(images)):
         """ Extract the name """
-        name = x.split("/")[-1].split(".")[0]
+        name = x.split("\\")[-1].split(".")[0]
 
         """ Reading image """
         image = cv2.imread(x, cv2.IMREAD_COLOR) ## (400, 400, 3)
@@ -92,6 +93,6 @@ if __name__ == "__main__":
         line = np.ones((size[1], 10, 3)) * 128
 
         cat_images = pred_y * 255
-        name = model_name + "/" + name
+        name = model_name + "_400" + "/" + name
         print(f"results/{name}.png")
         imageio.imwrite(f"results/{name}.png", cat_images)

@@ -1,0 +1,407 @@
+RESNET
+
+No filters, 800 images
+
+Epoch: 01 | Epoch Time: 1m 27s
+        Train Loss: 0.810
+         Val. Loss: 0.635
+
+--------------------------------------
+
+Only Brightness, 1600 images
+
+    Valid loss improved from inf to 0.6746. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 01 | Epoch Time: 2m 53s
+            Train Loss: 1.091
+            Val. Loss: 0.675
+
+    Valid loss improved from 0.6746 to 0.6062. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 02 | Epoch Time: 2m 48s
+            Train Loss: 0.970
+            Val. Loss: 0.606
+
+    Valid loss improved from 0.6062 to 0.5501. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 03 | Epoch Time: 2m 48s
+            Train Loss: 0.934
+            Val. Loss: 0.550
+
+    Valid loss improved from 0.5501 to 0.5439. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 04 | Epoch Time: 2m 46s
+            Train Loss: 0.916
+            Val. Loss: 0.544
+
+--------------------------------------
+
+Brightness and contrast filters, 2400 images
+
+    Epoch: 01 | Epoch Time: 4m 8s
+            Train Loss: 1.146
+            Val. Loss: 0.766
+
+--------------------------------------
+
+Lower brightness variations, 1400 images
+
+    Epoch: 01 | Epoch Time: 2m 26s
+            Train Loss: 1.143
+            Val. Loss: 0.788
+
+--------------------------------------
+
+Cropped images, 1600 images
+
+    Valid loss improved from inf to 0.5414. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 01 | Epoch Time: 2m 44s
+            Train Loss: 0.714
+            Val. Loss: 0.541
+
+    Valid loss improved from 0.5414 to 0.4240. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 02 | Epoch Time: 2m 43s
+            Train Loss: 0.469
+            Val. Loss: 0.424
+
+    Valid loss improved from 0.4240 to 0.4109. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 03 | Epoch Time: 2m 44s
+            Train Loss: 0.398
+            Val. Loss: 0.411
+
+    Valid loss improved from 0.4109 to 0.3349. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 04 | Epoch Time: 2m 45s
+            Train Loss: 0.366
+            Val. Loss: 0.335
+
+    Valid loss improved from 0.3349 to 0.3312. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 05 | Epoch Time: 2m 44s
+            Train Loss: 0.335
+            Val. Loss: 0.331
+
+    Valid loss improved from 0.3312 to 0.3131. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 06 | Epoch Time: 2m 44s
+            Train Loss: 0.324
+            Val. Loss: 0.313
+
+    Valid loss improved from 0.3131 to 0.2858. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 07 | Epoch Time: 2m 44s
+            Train Loss: 0.297
+            Val. Loss: 0.286
+
+    Valid loss improved from 0.2858 to 0.2755. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 08 | Epoch Time: 2m 44s
+            Train Loss: 0.292
+            Val. Loss: 0.275
+
+    Epoch: 09 | Epoch Time: 2m 44s
+            Train Loss: 0.278
+            Val. Loss: 0.277
+
+    Epoch: 10 | Epoch Time: 2m 47s
+            Train Loss: 0.262
+            Val. Loss: 0.286
+
+    Valid loss improved from 0.2755 to 0.2745. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 11 | Epoch Time: 2m 47s
+            Train Loss: 0.261
+            Val. Loss: 0.275
+
+    Valid loss improved from 0.2745 to 0.2368. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 12 | Epoch Time: 2m 47s
+            Train Loss: 0.251
+            Val. Loss: 0.237
+
+    Epoch: 13 | Epoch Time: 2m 48s
+            Train Loss: 0.241
+            Val. Loss: 0.245
+
+    Epoch: 14 | Epoch Time: 2m 47s
+            Train Loss: 0.237
+            Val. Loss: 0.260
+
+    Valid loss improved from 0.2368 to 0.2368. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 15 | Epoch Time: 2m 48s
+            Train Loss: 0.238
+            Val. Loss: 0.237
+
+    Valid loss improved from 0.2368 to 0.2360. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 16 | Epoch Time: 2m 48s
+            Train Loss: 0.225
+            Val. Loss: 0.236
+
+    Valid loss improved from 0.2360 to 0.2228. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 17 | Epoch Time: 2m 46s
+            Train Loss: 0.209
+            Val. Loss: 0.223
+
+    Valid loss improved from 0.2228 to 0.2037. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 18 | Epoch Time: 2m 46s
+            Train Loss: 0.208
+            Val. Loss: 0.204
+
+    Epoch: 19 | Epoch Time: 2m 48s
+            Train Loss: 0.208
+            Val. Loss: 0.208
+
+    Epoch: 20 | Epoch Time: 2m 49s
+            Train Loss: 0.196
+            Val. Loss: 0.224
+
+    Valid loss improved from 0.2037 to 0.2002. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 21 | Epoch Time: 2m 49s
+            Train Loss: 0.195
+            Val. Loss: 0.200
+
+    Valid loss improved from 0.2002 to 0.1908. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 22 | Epoch Time: 2m 45s
+            Train Loss: 0.196
+            Val. Loss: 0.191
+
+    Valid loss improved from 0.1908 to 0.1890. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 23 | Epoch Time: 2m 48s
+            Train Loss: 0.186
+            Val. Loss: 0.189
+
+    Epoch: 24 | Epoch Time: 2m 47s
+            Train Loss: 0.183
+            Val. Loss: 0.230
+
+    Epoch: 25 | Epoch Time: 2m 46s
+            Train Loss: 0.181
+            Val. Loss: 0.191
+
+    Valid loss improved from 0.1890 to 0.1742. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 26 | Epoch Time: 2m 48s
+            Train Loss: 0.180
+            Val. Loss: 0.174
+
+    Valid loss improved from 0.1742 to 0.1742. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 27 | Epoch Time: 2m 48s
+            Train Loss: 0.171
+            Val. Loss: 0.174
+
+    Epoch: 28 | Epoch Time: 2m 47s
+            Train Loss: 0.198
+            Val. Loss: 0.177
+
+    Epoch: 29 | Epoch Time: 2m 47s
+            Train Loss: 0.172
+            Val. Loss: 0.177
+
+    Valid loss improved from 0.1742 to 0.1673. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 30 | Epoch Time: 2m 47s
+            Train Loss: 0.170
+            Val. Loss: 0.167
+
+    Epoch: 31 | Epoch Time: 2m 47s
+            Train Loss: 0.170
+            Val. Loss: 0.177
+
+    Valid loss improved from 0.1673 to 0.1672. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 32 | Epoch Time: 2m 45s
+            Train Loss: 0.171
+            Val. Loss: 0.167
+
+    Valid loss improved from 0.1672 to 0.1613. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 33 | Epoch Time: 2m 45s
+            Train Loss: 0.161
+            Val. Loss: 0.161
+
+    Epoch: 34 | Epoch Time: 2m 44s
+            Train Loss: 0.163
+            Val. Loss: 0.200
+
+    Epoch: 35 | Epoch Time: 2m 44s
+            Train Loss: 0.174
+            Val. Loss: 0.165
+
+    Epoch: 36 | Epoch Time: 2m 44s
+            Train Loss: 0.160
+            Val. Loss: 0.162
+
+    Epoch: 37 | Epoch Time: 2m 44s
+            Train Loss: 0.157
+            Val. Loss: 0.172
+
+    Epoch: 38 | Epoch Time: 2m 44s
+            Train Loss: 0.159
+            Val. Loss: 0.162
+
+    Valid loss improved from 0.1613 to 0.1597. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 39 | Epoch Time: 2m 44s
+            Train Loss: 0.165
+            Val. Loss: 0.160
+
+--------------------------------------
+
+UNET
+
+Cropped, 1600 images
+
+    Valid loss improved from inf to 0.5359. Saving checkpoint: weights/checkpoint_unet.pth
+    Epoch: 01 | Epoch Time: 4m 54s
+            Train Loss: 0.713
+            Val. Loss: 0.536
+
+    Valid loss improved from 0.5359 to 0.4496. Saving checkpoint: weights/checkpoint_unet.pth
+    Epoch: 02 | Epoch Time: 4m 42s
+            Train Loss: 0.469
+            Val. Loss: 0.450
+
+    Valid loss improved from 0.4496 to 0.4002. Saving checkpoint: weights/checkpoint_unet.pth
+    Epoch: 03 | Epoch Time: 4m 40s
+            Train Loss: 0.398
+            Val. Loss: 0.400
+
+    Valid loss improved from 0.4002 to 0.3479. Saving checkpoint: weights/checkpoint_unet.pth
+    Epoch: 04 | Epoch Time: 4m 40s
+            Train Loss: 0.363
+            Val. Loss: 0.348
+
+
+-------------------------------
+
+RESNET with 5 layers
+
+    Valid loss improved from inf to 0.4735. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 01 | Epoch Time: 3m 32s
+            Train Loss: 0.682
+            Val. Loss: 0.474
+
+    Valid loss improved from 0.4735 to 0.4099. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 02 | Epoch Time: 3m 35s
+            Train Loss: 0.469
+            Val. Loss: 0.410
+
+    Valid loss improved from 0.4099 to 0.3449. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 03 | Epoch Time: 3m 31s
+            Train Loss: 0.399
+            Val. Loss: 0.345
+
+
+    ... restart
+
+    Valid loss improved from 0.3183 to 0.3076. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 04 | Epoch Time: 6m 24s
+            Train Loss: 0.316
+            Val. Loss: 0.308
+
+    Valid loss improved from 0.3076 to 0.2939. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 05 | Epoch Time: 6m 26s
+            Train Loss: 0.298
+            Val. Loss: 0.294
+
+    Epoch: 06 | Epoch Time: 6m 28s
+            Train Loss: 0.281
+            Val. Loss: 0.304
+
+    Epoch: 07 | Epoch Time: 6m 29s
+            Train Loss: 0.282
+            Val. Loss: 0.317
+
+    Valid loss improved from 0.2939 to 0.2785. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 08 | Epoch Time: 6m 27s
+            Train Loss: 0.267
+            Val. Loss: 0.279
+
+    Best: Epoch: 24 | Epoch Time: 6m 1s
+            Train Loss: 0.148
+            Val. Loss: 0.152
+
+
+-----------------
+
+without bias
+
+    Valid loss improved from inf to 0.6595. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 01 | Epoch Time: 6m 21s
+            Train Loss: 0.911
+            Val. Loss: 0.660
+
+    Valid loss improved from 0.6595 to 0.4590. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 02 | Epoch Time: 6m 9s
+            Train Loss: 0.552
+            Val. Loss: 0.459
+
+    Valid loss improved from 0.4590 to 0.3990. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 03 | Epoch Time: 6m 5s
+            Train Loss: 0.439
+            Val. Loss: 0.399
+
+    Valid loss improved from 0.3990 to 0.3609. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 04 | Epoch Time: 6m 1s
+            Train Loss: 0.395
+            Val. Loss: 0.361
+
+    Valid loss improved from 0.3609 to 0.3214. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 05 | Epoch Time: 6m 3s
+            Train Loss: 0.358
+            Val. Loss: 0.321
+
+    Epoch: 06 | Epoch Time: 6m 5s
+            Train Loss: 0.332
+            Val. Loss: 0.323
+
+    Valid loss improved from 0.3214 to 0.3086. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 07 | Epoch Time: 6m 4s
+            Train Loss: 0.318
+            Val. Loss: 0.309
+
+    Epoch: 08 | Epoch Time: 6m 1s
+            Train Loss: 0.303
+            Val. Loss: 0.311
+
+    Epoch: 09 | Epoch Time: 6m 3s
+            Train Loss: 0.287
+            Val. Loss: 0.309
+
+    Valid loss improved from 0.3086 to 0.2881. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 10 | Epoch Time: 6m 4s
+            Train Loss: 0.284
+            Val. Loss: 0.288
+
+    Valid loss improved from 0.2881 to 0.2758. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 11 | Epoch Time: 6m 5s
+            Train Loss: 0.279
+            Val. Loss: 0.276
+
+    Valid loss improved from 0.2758 to 0.2676. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 12 | Epoch Time: 6m 4s
+            Train Loss: 0.261
+            Val. Loss: 0.268
+
+    Valid loss improved from 0.2676 to 0.2555. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 13 | Epoch Time: 6m 7s
+            Train Loss: 0.250
+            Val. Loss: 0.255
+
+    Valid loss improved from 0.2555 to 0.2482. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 14 | Epoch Time: 6m 6s
+            Train Loss: 0.258
+            Val. Loss: 0.248
+
+    Valid loss improved from 0.2482 to 0.2374. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 15 | Epoch Time: 6m 13s
+            Train Loss: 0.233
+            Val. Loss: 0.237
+
+    Epoch: 16 | Epoch Time: 5m 59s
+            Train Loss: 0.239
+            Val. Loss: 0.241
+
+    Epoch: 17 | Epoch Time: 6m 4s
+            Train Loss: 0.237
+            Val. Loss: 0.239
+
+    Valid loss improved from 0.2374 to 0.2269. Saving checkpoint: weights/checkpoint_resnet.pth
+    Epoch: 18 | Epoch Time: 5m 57s
+            Train Loss: 0.216
+            Val. Loss: 0.227
+
+    Epoch: 19 | Epoch Time: 5m 50s
+            Train Loss: 0.221
+            Val. Loss: 0.297
+
+
+
+----------------------------
+
+with batch_size = 4
+
