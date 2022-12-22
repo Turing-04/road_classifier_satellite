@@ -6,7 +6,7 @@ import math
 import matplotlib.image as mpimg
 import numpy as np
 
-label_file = '../submission.csv'
+label_file = 'submission.csv'
 
 h = 16
 w = h

@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 import glob
-from utils import seeding, create_dir, epoch_time
+from utilitary.utils import seeding, create_dir, epoch_time
 
 test_folder = "test"
 test_400_folder = "test_400"

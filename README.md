@@ -26,7 +26,8 @@ Create a folder named **training** with the following structure:
         └── default
         └── expanded
 
-Copy all training images in the **training/images/validation** folder and all groundtruth images in the **training/groundtruth/validation** folder.
+Copy all training images in the **training/images/default** folder and all groundtruth images in the **training/groundtruth/default** folder.
+Then run the **data_augmentation.py** script at the root of the project, this will create the augmented dataset in the folders mentionned above.
 
 ### Test data
 Create a folder named **test**.
@@ -34,10 +35,6 @@ Take all test images out of their subfolders and copy them in the **test** folde
 
 
 # Running the code
-
-To get the full training dataset, run:
-
-    python augmentation.py
 
 To get the full testing dataset, run:
 
@@ -57,7 +54,7 @@ To train a model, run:
     python train.py cnn8
     python train.py cnn16
 
-This will create a Folder weights in which the **trained** models are stored. 
+This will create a Folder **weights** in which the **trained** models are stored. 
 
 To test a model, run:
 
