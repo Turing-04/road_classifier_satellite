@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 import torch.nn as nn
 
 from dataset import DriveDataset
-from loss import DiceLoss, DiceBCELoss
+from loss import DiceLoss, DiceBCELoss, BCELoss
 import sys
 from utils import seeding, create_dir, epoch_time
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     """ Hyperparameters """
     size = (400, 400)
-    batch_size = 4
+    batch_size = 2
     num_epochs = 100
     lr = 1e-4
 
