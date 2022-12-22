@@ -39,6 +39,15 @@ To get the full training dataset, run:
 
     python augmentation.py
 
+To get the full testing dataset, run:
+
+    python split_test.py unet
+    python split_test.py resnet
+    python split_test.py cnn2
+    python split_test.py cnn4
+    python split_test.py cnn8
+    python split_test.py cnn16
+
 To train a model, run:
 
     python train.py unet
@@ -56,6 +65,15 @@ To test a model, run:
     python test.py cnn4
     python test.py cnn8
     python test.py cnn16
+
+To get the full result images, run:
+
+    python unite_results.py unet
+    python unite_results.py resnet
+    python unite_results.py cnn2
+    python unite_results.py cnn4
+    python unite_results.py cnn8
+    python unite_results.py cnn16
 
 To generate the submission file, run:
 
